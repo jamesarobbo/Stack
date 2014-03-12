@@ -1,0 +1,43 @@
+<h1> <%= @story.title %> </h1>
+
+<p> <%= link_to "Edit", edit_story_path(@story), class:"edit" %> </p>
+
+<p> <%= link_to "Delete", story_path(@story), method: :delete, confirm: "Are you sure?", class:"delete" %> </p>
+
+
+<h3>
+	<%= pluralize @story.votes.size, "vote" %>
+</h3>
+
+
+<h3>
+
+<%= pluralize @story.comments.size, "comment" %> 
+
+<!-- this @story relates to the @story variable defined within show action the stories controller  -->
+
+</h3>
+
+<p>
+	<%= link_to "Upvote", story_votes_path(@story), method: :post %>
+</p>
+
+
+<% @story.comments.each do |comment| %> <!-- can @story.comments be changed to just @comment? -->
+
+	<div class="comment">
+		<%= simple_format comment.body %>
+		<p>
+			<%= time_ago_in_words comment.created_at %> ago
+		</p>
+	</div>
+
+<%end%>
+
+
+<!-- this @story refers to the @story variable defined within show action the comments controller -->
+
+<p> <%= link_to "Add a comment", new_story_comment_path(@story) %>
+
+</p>
+

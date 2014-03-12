@@ -1,0 +1,12 @@
+
+<!-- simple form is a gem -->
+
+<%=simple_form_for @story do |form| %>  <!-- where @story is the object being edited. It's from the stories controller. we have to 													 declare that so the form knows what fields are available?  -->
+
+	<%= form.input :title %>
+	<%= form.input :description %>
+	<%= form.input :link %>
+
+	<%= form.button :submit %>
+
+<%end%>

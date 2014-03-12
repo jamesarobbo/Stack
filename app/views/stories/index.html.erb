@@ -1,0 +1,32 @@
+<h1> Stack </h1>
+<p> This is my homepage </p>
+
+
+The user currently logged in is <%= @username %>
+
+<h2>There are <%= @stories.size %> stories</h2>
+
+
+<!-- This is a loop -->
+<% @stories.each do |story|%>
+
+	<div class="story">
+		<h3><%=link_to story.title, story.link %></h3>
+		<p><%=story.description %></p>
+		<p>Posted <%= time_ago_in_words story.created_at %> ago</p>
+		<p> <%=link_to pluralize(story.comments.size, "comment"), story_path(story) %>   <!-- the 'story' within the brackets is a local 															                          variable referring to the story variable  within the 																            pipes so the link is /stories/:id where the :id is from the story 
+																			variable. This is the helper from which all the unique paths are possible - it is a foundation helper. Without it, all other paths fail. e.g. change it to a static ID and all other paths will lead to that ID.       -->
+		<%= pluralize(story.votes.size, "vote") %>
+		
+		</p>
+
+	</div>
+
+<% end %>
+
+
+<p>
+	
+	<%= link_to "Add a story", new_story_path %>
+
+</p>
